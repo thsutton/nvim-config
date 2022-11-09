@@ -51,9 +51,23 @@ return require('packer').startup(function(use)
     config = [[require('thsutton.plugins.lsp')]],
   }
 
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = [[require('thsutton.plugins.lualine')]],
+  }
+  use {
+      'akinsho/bufferline.nvim',
+      tag = "v3.*",
+      requires = 'nvim-tree/nvim-web-devicons',
+      config = [[require('thsutton.plugins.bufferline')]],
+  }
 
   use 'lewis6991/gitsigns.nvim'
-  use 'norcalli/nvim-colorizer.lua'
+  use {
+      'norcalli/nvim-colorizer.lua',
+      config = [[require('thsutton.plugins.colorizer')]],
+  }
 
   use {
       'folke/trouble.nvim',
