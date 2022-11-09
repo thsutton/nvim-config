@@ -2,11 +2,18 @@ require('lsp-colors').setup {}
 
 local lspconfig = require('lspconfig')
 
-lspconfig.sourcekit.setup {}
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.terraformls.setup {}
+lspconfig.sourcekit.setup {
+    capabilities = capabilities,
+}
+
+lspconfig.terraformls.setup {
+    capabilities = capabilities,
+}
 
 lspconfig.sumneko_lua.setup {
+    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = { version = 'LuaJIT' },
@@ -23,13 +30,21 @@ lspconfig.sumneko_lua.setup {
     }
 }
 
-lspconfig.bashls.setup {}
+lspconfig.bashls.setup {
+    capabilities = capabilities,
+}
 
-lspconfig.html.setup {}
-
-lspconfig.cssls.setup {}
-
-lspconfig.yamlls.setup {}
+-- lspconfig.html.setup {
+--     capabilities = capabilities,
+-- }
+--
+-- lspconfig.cssls.setup {
+--     capabilities = capabilities,
+-- }
+--
+-- lspconfig.yamlls.setup {
+--     capabilities = capabilities,
+-- }
 
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)

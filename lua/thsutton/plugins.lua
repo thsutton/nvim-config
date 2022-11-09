@@ -66,11 +66,17 @@ return require('packer').startup(function(use)
   }
 
   use {
+    'L3MON4D3/LuaSnip',
+    tag = 'v1.*'
+  }
+
+  use {
       'hrsh7th/nvim-cmp',
       requires = {
           'hrsh7th/cmp-buffer',
           'hrsh7th/cmp-nvim-lsp',
           'hrsh7th/cmp-path',
+          'L3MON4D3/LuaSnip',
           'hrsh7th/cmp-nvim-lua',
       },
       config = [[require('thsutton.plugins.cmp')]],
