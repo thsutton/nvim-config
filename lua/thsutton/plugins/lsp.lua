@@ -46,32 +46,6 @@ lspconfig.bashls.setup {
 --     capabilities = capabilities,
 -- }
 
-local function _do_rename(win)
-    return function()
-        local new_name = vim.trim(vim.fn.getline('.'))
-        vim.api.nvim_win_close(win, true)
-        vim.lsp.buf.rename(new_name)
-    end
-end
-
-local function rename()
-    local opt = {
-        relative = 'cursor',
-        row = 0,
-        col = 0,
-        width = 30,
-        height = 1,
-        style = 'minimal',
-        border = 'single',
-    }
-    local cword = vim.fn.expand('<cword>')
-    local buf = vim.api.nvim_create_buf(false, true)
-    local win = vim.api.nvim_open_win(buf, true, opt)
-
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, {cword})
-    vim.keymap.set('n', '<CR>', _do_rename(win), {buffer = buf, silent = true})
-end
-
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -80,7 +54,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         if client.server_capabilities.renameProvider then
-            vim.keymap.set('n', '<leader>rn', rename, {silent = true, buffer = args.bug})
+            vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {silent = true, buffer = args.bug})
         end
     end
 })

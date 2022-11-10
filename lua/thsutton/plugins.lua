@@ -38,8 +38,9 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'folke/lsp-colors.nvim'
-
+  use 'stevearc/dressing.nvim'
   use 'nvim-tree/nvim-web-devicons'
+
   use {
       'nvim-tree/nvim-tree.lua',
       tag = 'nightly',
