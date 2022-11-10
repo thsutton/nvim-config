@@ -12,5 +12,3 @@ vim.keymap.set('n', '<leader>xx', '<cmd>TroubleToggle<cr>', opts)
 local tree = require('nvim-tree')
 vim.keymap.set('n', '<leader>xt', function() tree.toggle(false, true) end, opts)
 
-
-local foo = require('foo')
